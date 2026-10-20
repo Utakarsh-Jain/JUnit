@@ -78,4 +78,31 @@ public class UserRegistrationTest {
     void givenNullLastName_ShouldReturnFalse() {
         assertFalse(userRegistration.validateLastName(null));
     }
+
+    // --- UC 3: Email Tests ---
+    @Test
+    @DisplayName("UC3: Valid Email (abc.xyz@bl.co.in) should return true")
+    void givenValidEmail_ShouldReturnTrue() {
+        assertTrue(userRegistration.validateEmail("abc.xyz@bl.co.in"));
+        assertTrue(userRegistration.validateEmail("abc@bl.co"));
+    }
+
+    @Test
+    @DisplayName("UC3: Email missing @ symbol should return false")
+    void givenEmailWithoutAtSymbol_ShouldReturnFalse() {
+        assertFalse(userRegistration.validateEmail("abc.xyzbl.co.in"));
+    }
+
+    @Test
+    @DisplayName("UC3: Email missing domain or TLD should return false")
+    void givenEmailWithoutDomainOrTld_ShouldReturnFalse() {
+        assertFalse(userRegistration.validateEmail("abc@"));
+        assertFalse(userRegistration.validateEmail("abc@bl"));
+    }
+
+    @Test
+    @DisplayName("UC3: Null Email should return false")
+    void givenNullEmail_ShouldReturnFalse() {
+        assertFalse(userRegistration.validateEmail(null));
+    }
 }
