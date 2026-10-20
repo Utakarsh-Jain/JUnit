@@ -13,6 +13,9 @@ public class UserRegistration {
     // UC3: Email has 3 mandatory parts (abc, bl & co) and 2 optional (xyz & in) with precise @ and . positions
     private static final String EMAIL_REGEX = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,4}){1,2}$";
 
+    // UC4: Mobile format - Country code follow by space and 10 digit number (e.g. 91 9919819801)
+    private static final String MOBILE_REGEX = "^[0-9]{2}\\s[0-9]{10}$";
+
     public boolean validateFirstName(String firstName) {
         if (firstName == null) {
             return false;
@@ -32,5 +35,12 @@ public class UserRegistration {
             return false;
         }
         return Pattern.matches(EMAIL_REGEX, email);
+    }
+
+    public boolean validateMobile(String mobile) {
+        if (mobile == null) {
+            return false;
+        }
+        return Pattern.matches(MOBILE_REGEX, mobile);
     }
 }

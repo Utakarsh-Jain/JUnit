@@ -105,4 +105,35 @@ public class UserRegistrationTest {
     void givenNullEmail_ShouldReturnFalse() {
         assertFalse(userRegistration.validateEmail(null));
     }
+
+    // --- UC 4: Mobile Number Tests ---
+    @Test
+    @DisplayName("UC4: Valid Mobile Number (91 9919819801) should return true")
+    void givenValidMobileNumber_ShouldReturnTrue() {
+        assertTrue(userRegistration.validateMobile("91 9919819801"));
+    }
+
+    @Test
+    @DisplayName("UC4: Mobile Number missing space should return false")
+    void givenMobileNumberWithoutSpace_ShouldReturnFalse() {
+        assertFalse(userRegistration.validateMobile("919919819801"));
+    }
+
+    @Test
+    @DisplayName("UC4: Mobile Number with less than 10 digits should return false")
+    void givenMobileNumberWithLessThanTenDigits_ShouldReturnFalse() {
+        assertFalse(userRegistration.validateMobile("91 991981980"));
+    }
+
+    @Test
+    @DisplayName("UC4: Mobile Number with more than 10 digits should return false")
+    void givenMobileNumberWithMoreThanTenDigits_ShouldReturnFalse() {
+        assertFalse(userRegistration.validateMobile("91 99198198012"));
+    }
+
+    @Test
+    @DisplayName("UC4: Null Mobile Number should return false")
+    void givenNullMobileNumber_ShouldReturnFalse() {
+        assertFalse(userRegistration.validateMobile(null));
+    }
 }
