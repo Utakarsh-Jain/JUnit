@@ -136,4 +136,24 @@ public class UserRegistrationTest {
     void givenNullMobileNumber_ShouldReturnFalse() {
         assertFalse(userRegistration.validateMobile(null));
     }
+
+    // --- UC 5: Password Rule 1 (Minimum 8 Characters) ---
+    @Test
+    @DisplayName("UC5: Password with 8 or more characters should return true")
+    void givenPasswordWithMinEightCharacters_ShouldReturnTrue() {
+        assertTrue(userRegistration.validatePassword("password123"));
+        assertTrue(userRegistration.validatePassword("12345678"));
+    }
+
+    @Test
+    @DisplayName("UC5: Password with less than 8 characters should return false")
+    void givenPasswordWithLessThanEightCharacters_ShouldReturnFalse() {
+        assertFalse(userRegistration.validatePassword("pass"));
+    }
+
+    @Test
+    @DisplayName("UC5: Null Password should return false")
+    void givenNullPassword_ShouldReturnFalse() {
+        assertFalse(userRegistration.validatePassword(null));
+    }
 }

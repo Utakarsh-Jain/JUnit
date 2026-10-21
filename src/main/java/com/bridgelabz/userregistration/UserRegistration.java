@@ -16,6 +16,9 @@ public class UserRegistration {
     // UC4: Mobile format - Country code follow by space and 10 digit number (e.g. 91 9919819801)
     private static final String MOBILE_REGEX = "^[0-9]{2}\\s[0-9]{10}$";
 
+    // UC5: Password Rule 1 - Minimum 8 characters
+    private static final String PASSWORD_RULE1_REGEX = "^.{8,}$";
+
     public boolean validateFirstName(String firstName) {
         if (firstName == null) {
             return false;
@@ -42,5 +45,12 @@ public class UserRegistration {
             return false;
         }
         return Pattern.matches(MOBILE_REGEX, mobile);
+    }
+
+    public boolean validatePassword(String password) {
+        if (password == null) {
+            return false;
+        }
+        return Pattern.matches(PASSWORD_RULE1_REGEX, password);
     }
 }
